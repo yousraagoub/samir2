@@ -1,44 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For My Love</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Note 💖</title>
   <style>
     body {
-      background: #fff0f5;
-      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffccd5);
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
       margin: 0;
+      overflow: hidden;
     }
-    .note {
-      background: #fff;
-      padding: 30px;
-      border: 2px solid #ff69b4;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      max-width: 500px;
-      text-align: center;
-    }
+
     h1 {
-      color: #ff1493;
+      font-size: 2.5rem;
+      color: #d6336c;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
     }
-    p {
+
+    button {
+      background-color: #ff80a6;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
       font-size: 1.2rem;
-      color: #333;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff4d79;
+    }
+
+    #note {
+      margin-top: 30px;
+      max-width: 80%;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff0f5;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      display: none;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatUp 5s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: 0;
+        opacity: 0;
+        transform: translateX(0) rotate(45deg);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        transform: translateX(100px) rotate(45deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="note">
-    <h1>To My Dearest 💖</h1>
-    <p>
-      Every moment with you feels like magic.<br>
-      Thank you for being my everything.<br>
-      I love you, always and forever.
-    </p>
+
+  <h1>Hey Love 💕</h1>
+  <button onclick="revealNote()">Click to Reveal Your Note</button>
+
+  <div id="note">
+    My dearest,  
+    <br><br>
+    Every day with you feels like a beautiful dream.  
+    Thank you for being my best friend, my safe place, and my forever love.  
+    <br><br>
+    Yours always,  
+    <strong>Yusra 💗</strong>
   </div>
+
+  <script>
+    function revealNote() {
+      document.getElementById("note").style.display = "block";
+    }
+
+    // Create floating hearts
+    function createHearts() {
+      for (let i = 0; i < 15; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        heart.style.opacity = Math.random();
+        document.body.appendChild(heart);
+      }
+    }
+
+    createHearts();
+  </script>
+
 </body>
 </html>
